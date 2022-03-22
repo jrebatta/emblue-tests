@@ -3,7 +3,6 @@ package page;
 import base.Base;
 import paths.PokemonPath;
 import org.openqa.selenium.WebDriver;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,24 +39,49 @@ public class PokemonPage extends Base{
 
 
     public void iClickOnShowAllPokemons() throws InterruptedException {
-        Wait("2000");
-        click(pokemonPath.listPokemon);
+        implicitWait(2000);
+        click(pokemonPath.btnListPokemon);
     }
 
     public void thePokemonsAreListed() {
-
+        String pokemon = getText(pokemonPath.listPokemon);
     }
 
-    public void iClickOnCreateNewPokemon() {
+    public void iClickOnCreateNewPokemon() throws InterruptedException {
+        implicitWait(2000);
+        click(pokemonPath.btnNewPokemon);
     }
 
-    public void enterTheDataOfThePokemon() {
+    public void enterTheDataOfThePokemon(String valID, String valName, String valColor, String valLevel) throws InterruptedException {
+        implicitWait(2000);
+        type(valID,pokemonPath.inputID);
+        type(valName,pokemonPath.inputName);
+        type(valColor,pokemonPath.inputColor);
+        type(valLevel,pokemonPath.inputLevel);
     }
 
-    public void createPokemon() {
+    public void createPokemon() throws InterruptedException {
+        implicitWait(2000);
+        click(pokemonPath.btnCreateNewPokemon);
+        implicitWait(2000);
     }
 
-    public void validateCreatedPokemon() {
+    public boolean validateCreatedPokemon() {
+        boolean flag = false;
+        String textAlert = alertgetText();
+        if (textAlert.trim().equals("Pokemon created!")){
+            flag = true;
+        } else {
+            Logger.getGlobal().log(Level.INFO, "Wrong pokemon creation", textAlert);
+        }
+        alertAcept();
+        click(pokemonPath.btnListPokemon);
+        return flag;
     }
+
+
+
 
 }
+
+

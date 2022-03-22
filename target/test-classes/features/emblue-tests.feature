@@ -8,7 +8,7 @@
       Given Entry to the website
       And I validate that the website is available "Capsule Corp - Tracking System"
       When I click on Show all pokemons
-#      Then The pokemons are listed
+      Then The pokemons are listed
 
     @TEST2
     Scenario: Create new pokemon
@@ -20,6 +20,7 @@
         | 2  | Charmander | Orange   | 13    |
       And create pokemon
       Then Validate created pokemon
+
 
 
 

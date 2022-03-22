@@ -1,9 +1,7 @@
 package base;
 
 import io.cucumber.datatable.DataTable;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
 
@@ -14,7 +12,7 @@ public class Base {
 
     public WebDriver driver;
 
-    public WebDriverWait wait;
+    public Alert alert;
 
     public Base(WebDriver driver){
         this.driver = driver;
@@ -46,15 +44,11 @@ public class Base {
         driver.findElement(locator).sendKeys(inputText);
     }
     public void login(String user, String pass){
-
     }
 
     public void click(By locator){
         driver.findElement(locator).click();
     }
-
-    Double num1 = 20.00;
-    String num2 = num1.toString();
 
     public void visit(String url){
         driver.get(url);
@@ -83,12 +77,17 @@ public class Base {
         return (String)((Map)list.get(0)).get(title);
     }
 
-    public void Wait(String number) throws InterruptedException {
-        Thread.sleep(Long.parseLong(number));
+    public void implicitWait(int number) throws InterruptedException {
+        Thread.sleep(number);
     }
 
-    public void waitElementToClickable(By locator){
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public void alertAcept() {
+        alert = driver.switchTo().alert();
+        alert.accept();
+    }
 
+    public String alertgetText() {
+        alert = driver.switchTo().alert();
+        return alert.getText();
     }
 }
