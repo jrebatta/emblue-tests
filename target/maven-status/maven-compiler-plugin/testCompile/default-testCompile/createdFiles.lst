@@ -1,6 +1,2 @@
 runner\Runner.class
-page\PokemonPage.class
 stepdefinition\PokemonStepDefinition.class
-step\PokemonStep.class
-base\Base.class
-paths\PokemonPath.class

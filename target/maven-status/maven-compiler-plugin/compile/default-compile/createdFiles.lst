@@ -1,0 +1,4 @@
+page\PokemonPage.class
+step\PokemonStep.class
+base\Base.class
+paths\PokemonPath.class
