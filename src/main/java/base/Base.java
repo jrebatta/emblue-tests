@@ -11,10 +11,9 @@ import java.util.Map;
 public class Base {
 
     public WebDriver driver;
-
     public Alert alert;
 
-    public Base(WebDriver driver){
+    public Base(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -28,37 +27,31 @@ public class Base {
         return driver;
     }
 
-    public WebElement findElement(By locator){
+    public WebElement findElement(By locator) {
         return driver.findElement(locator);
     }
 
-    public String getText(WebElement element){
+    public String getText(WebElement element) {
         return element.getText();
     }
 
-    public String getText(By locator){
+    public String getText(By locator) {
         return driver.findElement(locator).getText();
     }
 
-    public void type(String inputText, By locator){
+    public void type(String inputText, By locator) {
         driver.findElement(locator).sendKeys(inputText);
     }
-    public void login(String user, String pass){
-    }
 
-    public void click(By locator){
+    public void click(By locator) {
         driver.findElement(locator).click();
     }
 
-    public void visit(String url){
+    public void visit(String url) {
         driver.get(url);
     }
 
-    public void isDisplayed(By locator){
-        driver.findElement(locator).isDisplayed();
-    }
-
-    public void maximize(){
+    public void maximize() {
         driver.manage().window().maximize();
     }
 
@@ -74,19 +67,19 @@ public class Base {
 
     public static String getValueFromDataTable(DataTable dataTable, String title) {
         List<Map<String, String>> list = dataTable.asMaps();
-        return (String)((Map)list.get(0)).get(title);
+        return list.get(0).get(title);
     }
 
     public void implicitWait(int number) throws InterruptedException {
         Thread.sleep(number);
     }
 
-    public void alertAcept() {
+    public void alertAccept() {
         alert = driver.switchTo().alert();
         alert.accept();
     }
 
-    public String alertgetText() {
+    public String alertGetText() {
         alert = driver.switchTo().alert();
         return alert.getText();
     }

@@ -1,23 +1,23 @@
 package page;
 
 import base.Base;
-import paths.PokemonPath;
 import org.openqa.selenium.WebDriver;
+import paths.PokemonPath;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PokemonPage extends Base{
+public class PokemonPage extends Base {
 
-    PokemonPath pokemonPath = new PokemonPath();
+    private PokemonPath pokemonPath = new PokemonPath();
 
-    public PokemonPage(WebDriver driver){
+    public PokemonPage(WebDriver driver) {
         super(driver);
     }
 
-    public PokemonPage(){
+    public PokemonPage() {
         super();
     }
-
 
     public void entryToTheWebsite() {
         new PokemonPage(driver);
@@ -26,10 +26,10 @@ public class PokemonPage extends Base{
         maximize();
     }
 
-    public boolean iValidateThatTheWebsiteIsAvailable(String title) {
+    public boolean validateWebsiteAvailability(String title) {
         boolean flag = false;
         String text = getText(pokemonPath.titlePage);
-        if (text.trim().equals(title.trim())){
+        if (text.trim().equals(title.trim())) {
             flag = true;
         } else {
             Logger.getGlobal().log(Level.INFO, "The title is incorrect", pokemonPath.titlePage);
@@ -37,27 +37,22 @@ public class PokemonPage extends Base{
         return flag;
     }
 
-
-    public void iClickOnShowAllPokemons() throws InterruptedException {
+    public void clickShowAllPokemons() throws InterruptedException {
         implicitWait(2000);
         click(pokemonPath.btnListPokemon);
     }
 
-    public void thePokemonsAreListed() {
-        String pokemon = getText(pokemonPath.listPokemon);
-    }
-
-    public void iClickOnCreateNewPokemon() throws InterruptedException {
+    public void clickCreateNewPokemon() throws InterruptedException {
         implicitWait(2000);
         click(pokemonPath.btnNewPokemon);
     }
 
-    public void enterTheDataOfThePokemon(String valID, String valName, String valColor, String valLevel) throws InterruptedException {
+    public void enterPokemonData(String valID, String valName, String valColor, String valLevel) throws InterruptedException {
         implicitWait(2000);
-        type(valID,pokemonPath.inputID);
-        type(valName,pokemonPath.inputName);
-        type(valColor,pokemonPath.inputColor);
-        type(valLevel,pokemonPath.inputLevel);
+        type(valID, pokemonPath.inputID);
+        type(valName, pokemonPath.inputName);
+        type(valColor, pokemonPath.inputColor);
+        type(valLevel, pokemonPath.inputLevel);
     }
 
     public void createPokemon() throws InterruptedException {
@@ -68,20 +63,18 @@ public class PokemonPage extends Base{
 
     public boolean validateCreatedPokemon() {
         boolean flag = false;
-        String textAlert = alertgetText();
-        if (textAlert.trim().equals("Pokemon created!")){
+        String textAlert = alertGetText();
+        if (textAlert.trim().equals("Pokemon created!")) {
             flag = true;
         } else {
             Logger.getGlobal().log(Level.INFO, "Wrong pokemon creation", textAlert);
         }
-        alertAcept();
+        alertAccept();
         click(pokemonPath.btnListPokemon);
         return flag;
     }
 
-
-
-
+    public void thePokemonsAreListed(){
+        String pokemon = getText(pokemonPath.listPokemon);
+    }
 }
-
-

@@ -2,40 +2,40 @@ package step;
 
 import base.Base;
 import io.cucumber.datatable.DataTable;
-import page.PokemonPage;
 import org.junit.Assert;
+import page.PokemonPage;
 
 public class PokemonStep {
 
-    PokemonPage pokemonPage = new PokemonPage();
+    private PokemonPage pokemonPage;
+
+    public PokemonStep() {
+        pokemonPage = new PokemonPage();
+    }
 
     public void entryToTheWebsite() {
         pokemonPage.entryToTheWebsite();
     }
 
     public void iValidateThatTheWebsiteIsAvailable(String title) {
-        Assert.assertTrue(pokemonPage.iValidateThatTheWebsiteIsAvailable(title));
+        Assert.assertTrue(pokemonPage.validateWebsiteAvailability(title));
     }
 
     public void iClickOnShowAllPokemons() throws InterruptedException {
-        pokemonPage.iClickOnShowAllPokemons();
-    }
-
-    public void thePokemonsAreListed() {
-        pokemonPage.thePokemonsAreListed();
+        pokemonPage.clickShowAllPokemons();
     }
 
     public void iClickOnCreateNewPokemon() throws InterruptedException {
-        pokemonPage.iClickOnCreateNewPokemon();
+        pokemonPage.clickCreateNewPokemon();
     }
 
     public void enterTheDataOfThePokemon(DataTable dataTable) throws InterruptedException {
-        String id = Base.getValueFromDataTable(dataTable,"ID");
-        String name = Base.getValueFromDataTable(dataTable,"Name");
-        String color = Base.getValueFromDataTable(dataTable,"Color");
-        String level = Base.getValueFromDataTable(dataTable,"Level");
+        String id = Base.getValueFromDataTable(dataTable, "ID");
+        String name = Base.getValueFromDataTable(dataTable, "Name");
+        String color = Base.getValueFromDataTable(dataTable, "Color");
+        String level = Base.getValueFromDataTable(dataTable, "Level");
 
-        pokemonPage.enterTheDataOfThePokemon(id,name,color,level);
+        pokemonPage.enterPokemonData(id, name, color, level);
     }
 
     public void createPokemon() throws InterruptedException {
@@ -44,7 +44,9 @@ public class PokemonStep {
 
     public void validateCreatedPokemon() {
         Assert.assertTrue(pokemonPage.validateCreatedPokemon());
-
     }
 
+    public void thePokemonsAreListed() {
+        pokemonPage.thePokemonsAreListed();
+    }
 }

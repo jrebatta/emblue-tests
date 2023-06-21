@@ -1,4 +1,6 @@
 page\PokemonPage.class
 step\PokemonStep.class
 base\Base.class
+base\RandomNumberGenerator.class
+base\Test.class
 paths\PokemonPath.class
